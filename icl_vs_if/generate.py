@@ -4,7 +4,6 @@ import pdb
 import os
 import argparse
 import pandas as pd
-print('CUDA Visible Devices:', os.environ["CUDA_VISIBLE_DEVICES"])
 
 MODEL_PATHS = {
     "llama": "/project_data/projects/suhask/llama/download/7B_HF",

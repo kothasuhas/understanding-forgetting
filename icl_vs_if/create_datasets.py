@@ -13,6 +13,12 @@ TASK_LIST = [('capslock', 'math', 2), ('repeat', 'math', 2), ('capslock', 'start
 INSTRUCTION_TEMPLATE_LIST = ["instr"]
 PROMPT_TEMPLATE_LIST = ["input"]
 
+print('Generating datasets for...')
+print('  Languages:', LANG_LIST)
+print('  Tasks:', TASK_LIST)
+print('  Instruction Templates:', INSTRUCTION_TEMPLATE_LIST)
+print('  Prompt Templates:', PROMPT_TEMPLATE_LIST)
+
 for lang, (ICL_TASK, IF_TASK, kshot), INSTRUCTION_TEMPLATE, PROMPT_TEMPLATE in product(LANG_LIST, TASK_LIST, INSTRUCTION_TEMPLATE_LIST, PROMPT_TEMPLATE_LIST):    
     with open(f"sentences/random_sentences_{lang}.txt", 'r', encoding='utf-8') as f:
         sentences = list(map(lambda line: line.strip('\n'), f))
@@ -141,7 +147,7 @@ for lang, (ICL_TASK, IF_TASK, kshot), INSTRUCTION_TEMPLATE, PROMPT_TEMPLATE in p
     random.seed(10)
     data = [generate_sample(kshot=kshot) for _ in range(100)]
 
-    print(data[0]['prompt'])
+    # print(data[0]['prompt'])
 
     df = pd.DataFrame.from_dict(data)
     df.to_csv(f"in_csvs/{ICL_TASK}-{IF_TASK}-{INSTRUCTION_TEMPLATE}-{PROMPT_TEMPLATE}-{lang}-{kshot}shot.csv")

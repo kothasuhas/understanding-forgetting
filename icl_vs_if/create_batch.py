@@ -12,6 +12,9 @@ model_list = ['llama', 'alpaca', 'vicuna-7b', 'opt-1.3b', 'opt-iml-max-1.3b']
 instr_list = ['instr']
 prompt_template_list = ['input']
 
+print('Generate batch of datasets for generate.py...')
+print('  Models:', model_list)
+
 files = []
 for (task, shot), lang, instr, prompt_template in product(task_list, lang_list, instr_list, prompt_template_list):
     files.append(f"{task}-{instr}-{prompt_template}-{lang}-{shot}shot.csv")
@@ -22,8 +25,13 @@ concatenated_filehandle = f"batch-{formatted_time}"
 
 concat_csvs("in_csvs/", files, concatenated_filehandle)
 
-print(concatenated_filehandle)
+print(f'Generated {concatenated_filehandle}')
 
+complete_command = ""
 for model in model_list:
     command=f"python3 generate.py --model {model} --batch {concatenated_filehandle}"
-    print(command, end=' ; ')
+    complete_command += command + " ; "
+
+with open("batch_generate.sh", "w") as f:
+    f.write(complete_command)
+    f.write("\n")

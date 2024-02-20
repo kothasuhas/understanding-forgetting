@@ -1,5 +1,8 @@
 import numpy as np
 from evaluate_accuracy import get_results_dict
+import sys
+
+sys.stdout = open('latex_tables.txt', 'w')
 
 lang_codes_to_name = {
     'en' : 'English',
