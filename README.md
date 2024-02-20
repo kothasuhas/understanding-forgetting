@@ -1,8 +1,8 @@
 # Understanding Catastrophic Forgetting in Language Models via Implicit Inference
 
-<div style="text-align: center;">
+<p align="center">
     <img src="figure.png" alt="image info" width="60%">
-</div>
+</p>
 
 <br>
 
